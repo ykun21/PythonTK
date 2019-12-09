@@ -1,0 +1,92 @@
+def del_all():
+    global tasks
+    tasks = []
+    w=len(tasks)
+    w="All {} tasks deleted".format(w)
+    lbl_display["text"]=w
+    update_list()
+
+def del_task():
+    sel = lbl_task.curselection()
+    for index in sel:
+        lbl_task.delete(index)
+        Q = "Selected Task is Deleted "
+        lbl_display["text"] = Q
+
+
+def no_of_task():
+    noOfTask = len(tasks)
+    noOfTask = "There is {} tasks in the list".format(noOfTask)
+    lbl_display["text"] = noOfTask
+
+def sort_asc():
+    tasks.sort()
+    update_list()
+
+def sort_desc():
+    tasks.sort()
+    tasks.reverse()
+    update_list()
+
+global txt_task
+
+
+
+lbl_space = Label(root, text="", bg='#17181a')
+lbl_space.pack()
+
+lbl_title = Label(root, text="    ", bg='#17181a', fg='#ff6e63', font=["Allerta Stencil", 20, 'bold'],bitmap="hourglass")
+lbl_title.place(x=100,y=27)
+
+lbl_title = Label(root, text="To-Do-List", bg='#17181a', fg='#bdffcd', font=["Allerta Stencil", 20, 'bold'])
+lbl_title.pack()
+
+
+
+lbl_display = Label(root, text="",width='0',bg='#17181a', fg='#ff6e63', font=("Arial", 10,'bold'))
+lbl_display.pack()
+
+
+lbl_space = Label(root, text="", bg='#17181a')
+lbl_space.pack()
+
+txt_task = Entry(root, width='19', bg='#17181a',borderwidth='1', fg="#ffff80",font=("Arial", 14))
+txt_task.place(x=50,y=100)
+
+lbl_space = Label(root, text="", bg='#17181a')
+lbl_space.pack()
+
+btn_add_task = Button(root, text='Add task', command=add_task, relief=RIDGE, font=("Alrial", 10, 'bold'),
+                      bg='#17181a', fg='#bdffcd', width='10', height='0')
+btn_add_task.place(x=270,y=100)
+
+btn_del_all = Button(root, text='Delete all', command=del_all, relief=RIDGE, font=("Alrial", 10, 'bold'),
+                     bg='#17181a', fg='#bdffcd',  width='10', height='0')
+btn_del_all.place(x=270,y=131)
+
+btn_no_of_task = Button(root, text='No.of task', command=no_of_task, relief=RIDGE, font=("Alrial", 10, 'bold'),
+                        bg='#17181a', fg='#bdffcd',  width='10', height='0')
+btn_no_of_task.place(x=270,y=161)
+
+btn_del_task = Button(root, text='Delete task', command=del_task, relief=RIDGE, font=("Alrial", 10, 'bold'),
+                        bg='#17181a', fg='#bdffcd',  width='10', height='0')
+btn_del_task.place(x=270,y=191)
+
+lbl_space = Label(root, text="", bg='#17181a')
+lbl_space.pack()
+
+btn_asc = Button(root, text='ASC ', command=sort_asc, relief=RIDGE, font=("Alrial", 10, 'bold'), bg='#17181a',
+                  fg='#bdffcd', width='10', height='0', )
+btn_asc.place(x=270,y=221)
+btn_desc = Button(root, text='DESC', command=sort_desc, relief=RIDGE, font=("Alrial", 10, 'bold'), bg='#17181a',
+                  fg='#bdffcd', width='10', height='0', )
+btn_desc.place(x=270,y=251)
+
+btn_exit = Button(root, text='Exit', command=exit, relief=RIDGE, font=("Alrial", 10, 'bold'), bg='#17181a',
+                  fg='#bdffcd',  width='10', height='0')
+btn_exit.place(x=270,y=282)
+
+lbl_task = Listbox(root, width='30',height='11' ,bg='#17181a', fg="#ff9e4f",font=("Alrial", 9,'bold'))
+lbl_task.place(x=50,y=130)
+
+root.mainloop()
